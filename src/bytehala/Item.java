@@ -1,27 +1,11 @@
 package bytehala;
 
-public class Item {
-		
-		private int weight;
-		private int value;
+public interface Item {
 
-		public Item(int weight, int value) {
-			this.weight = weight;
-			this.value = value;
-		}
-		
-		int getWeight() {
-			return weight;
-		}
-		
-		int getValue() {
-			return value;
-		}
-		
-		@Override
-		public String toString() {
-			return "w:" + weight + " v:" + value;
-		}
-		
-		
-	}
+	int getPhysicalAttribute();
+
+	int getValue();
+
+	String toString();
+
+}
