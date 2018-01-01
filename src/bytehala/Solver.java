@@ -20,7 +20,7 @@ public class Solver {
 	
 	public void solve() {
 		for(int y = 0; y < numItems; y++) {
-			for(int x = 0; x < maxWeight + 1; x++) { // TODO: maxWeight + 1?
+			for(int x = 0; x < maxWeight + 1; x++) {
 				Item item = items.get(y);
 				if(x == 0) {
 					T[y][x] = 0;
@@ -41,9 +41,27 @@ public class Solver {
 				}
 			}
 		}
-		System.out.println("test");
+		backTrace();
 	}
 	
+	private void backTrace() {
+		int x = maxWeight;
+		int y = numItems - 1;
+		
+		int value;
+		do {
+			value = T[y][x];
+			Item item = items.get(y);
+			if((x - item.getWeight() >= 0) && value - item.getValue() == T[y][x-item.getWeight()]) { // take
+				System.out.println(item);
+				x = x - item.getWeight();
+			}
+			y--;
+			
+		} while(x > 0);
+		
+	}
+
 	public static void main(String[] args) {
 		List<Item> items = new ArrayList<>();
 		items.add(new Item(3, 6));
